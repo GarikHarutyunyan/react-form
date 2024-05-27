@@ -8,6 +8,7 @@ export interface IFormBlueprintItem {
   type: FormBlueprintItemType;
   size?: number;
   value?: string;
+  label?: string;
   elements?: IFormBlueprintItem[];
   columns?: IFormBlueprintColumn[];
 }

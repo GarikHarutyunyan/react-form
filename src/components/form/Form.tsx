@@ -1,4 +1,5 @@
-import React, {ReactElement} from 'react';
+import React, {FormEvent, ReactElement} from 'react';
+import {Button} from '../../core-components/Button';
 import {Heading} from '../../core-components/Heading';
 import {Paragraph} from '../../core-components/Paragraph';
 import {
@@ -42,12 +43,24 @@ const Form: React.FC<IFormProps> = ({config}) => {
       case FormBlueprintItemType.COLUMN:
         element = <div></div>;
         break;
+      case FormBlueprintItemType.SUBMIT:
+        element = <Button label={blueprintItem.label as string} />;
+        break;
     }
 
     return element;
   };
 
-  return <div className={'form'}>{blueprint.map(renderBlueprintItem)}</div>;
+  const handleSubmit = (e: FormEvent): void => {
+    e.preventDefault();
+    alert('Submit');
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={'form'}>
+      {blueprint.map(renderBlueprintItem)}
+    </form>
+  );
 };
 
 export {Form};
