@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {WithStyleAndClassName} from '../../data-structures';
+import './checkbox.css';
 
 interface ICheckboxProps extends WithStyleAndClassName {
   name: string;
@@ -7,6 +8,7 @@ interface ICheckboxProps extends WithStyleAndClassName {
   defaultValue: boolean;
   onChange: (name: string, value: boolean) => void;
   label: string;
+  isRequried?: boolean;
 }
 
 const Checkbox: React.FC<ICheckboxProps> = ({
@@ -15,6 +17,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   defaultValue,
   onChange,
   label,
+  isRequried,
   style,
   className,
 }) => {
@@ -37,6 +40,9 @@ const Checkbox: React.FC<ICheckboxProps> = ({
         onChange={toggleCheckbox}
       />
       <label htmlFor={name}>{label}</label>
+      {isRequried && (
+        <span className={'checkbox__label-required-mark'}>{'*'}</span>
+      )}
     </div>
   );
 };

@@ -46,6 +46,7 @@ const Element: React.FC<IElementProps> = ({item}) => {
           value={(getFieldValue!(item.name as string) as string) || ''}
           onChange={changeFieldValue!}
           label={item.label as string}
+          isRequried={item.required}
         />
       );
       break;
@@ -59,6 +60,7 @@ const Element: React.FC<IElementProps> = ({item}) => {
           onChange={changeFieldValue!}
           label={item.label as string}
           defaultValue={defaultValue}
+          isRequried={item.required}
         />
       );
       break;

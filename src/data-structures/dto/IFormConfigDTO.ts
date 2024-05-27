@@ -10,6 +10,7 @@ export interface IFormBlueprintItem {
   size?: number;
   value?: string;
   label?: string;
+  required?: boolean;
   elements?: IFormBlueprintItem[];
   columns?: IFormBlueprintColumn[];
 }

@@ -8,6 +8,7 @@ interface IInputProps extends WithStyleAndClassName {
   value: string;
   onChange: (name: string, value: string) => void;
   label: string;
+  isRequried?: boolean;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<IInputProps> = ({
   value,
   onChange,
   label,
+  isRequried,
   style,
   className,
 }) => {
@@ -28,6 +30,9 @@ const Input: React.FC<IInputProps> = ({
   return (
     <div style={style} className={className}>
       <label htmlFor={name}>{label}</label>
+      {isRequried && (
+        <span className={'input__label-required-mark'}>{'*'}</span>
+      )}
       <input
         name={name}
         type={type}
