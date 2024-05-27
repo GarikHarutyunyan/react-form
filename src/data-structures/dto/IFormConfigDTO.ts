@@ -6,6 +6,7 @@ export interface IFormBlueprintColumn {
 
 export interface IFormBlueprintItem {
   type: FormBlueprintItemType;
+  name?: string;
   size?: number;
   value?: string;
   label?: string;
@@ -18,6 +19,7 @@ export enum FormBlueprintItemType {
   HEADING = 'heading',
   PARAGRAPH = 'paragraph',
   INPUT = 'input',
+  PASSWORD = 'password',
   ROW = 'row',
   COLUMN = 'column',
   SUBMIT = 'submit',
