@@ -4,6 +4,7 @@ import {Heading} from '../../core-components/heading/Heading';
 import {Input} from '../../core-components/input/Input';
 import {Paragraph} from '../../core-components/paragraph/Paragraph';
 import {FormBlueprintItemType, IFormBlueprintItem} from '../../data-structures';
+import {Checkbox} from '../checkbox/Checkbox';
 import {Row} from '../row/Row';
 import './element.css';
 
@@ -45,6 +46,16 @@ const Element: React.FC<IElementProps> = ({item}) => {
         />
       );
       break;
+    case FormBlueprintItemType.CHECKBOX:
+      element = (
+        <Checkbox
+          name={item.name as string}
+          value={''}
+          label={item.label as string}
+        />
+      );
+      break;
+
     case FormBlueprintItemType.ROW:
       element = <Row columns={item.columns || []} />;
       break;

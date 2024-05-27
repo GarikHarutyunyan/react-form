@@ -20,6 +20,7 @@ export enum FormBlueprintItemType {
   PARAGRAPH = 'paragraph',
   INPUT = 'input',
   PASSWORD = 'password',
+  CHECKBOX = 'checkbox',
   ROW = 'row',
   COLUMN = 'column',
   SUBMIT = 'submit',

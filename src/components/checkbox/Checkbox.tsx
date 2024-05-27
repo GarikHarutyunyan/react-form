@@ -1,17 +1,14 @@
 import React from 'react';
 import {WithStyleAndClassName} from '../../data-structures';
-import './input.css';
 
-interface IInputProps extends WithStyleAndClassName {
+interface ICheckboxProps extends WithStyleAndClassName {
   name: string;
-  type: string;
   value: string;
   label: string;
 }
 
-const Input: React.FC<IInputProps> = ({
+const Checkbox: React.FC<ICheckboxProps> = ({
   name,
-  type,
   value,
   label,
   style,
@@ -19,16 +16,10 @@ const Input: React.FC<IInputProps> = ({
 }) => {
   return (
     <div style={style} className={className}>
+      <input name={name} type={'checkbox'} value={value} />
       <label htmlFor={name}>{label}</label>
-      <input
-        name={name}
-        type={type}
-        value={value}
-        placeholder={label}
-        className={'input__input'}
-      />
     </div>
   );
 };
 
-export {Input};
+export {Checkbox};
