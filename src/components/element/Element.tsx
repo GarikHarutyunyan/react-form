@@ -21,22 +21,6 @@ const Element: React.FC<IElementProps> = ({item}) => {
     return <Element item={item} />;
   };
 
-  const initInputValue = (name: string) => {
-    if (getFieldValue!(name) === undefined) {
-      changeFieldValue!(name, '');
-    }
-  };
-
-  const initCheckboxValue = (name: string, value: string) => {
-    if (getFieldValue!(name) === undefined) {
-      if (value === 'yes') {
-        changeFieldValue!(name, true);
-      } else {
-        changeFieldValue!(name, false);
-      }
-    }
-  };
-
   switch (item.type) {
     case FormBlueprintItemType.BLOCK:
       element = (
@@ -55,25 +39,26 @@ const Element: React.FC<IElementProps> = ({item}) => {
       break;
     case FormBlueprintItemType.INPUT:
     case FormBlueprintItemType.PASSWORD:
-      initInputValue(item.name as string);
       element = (
         <Input
           name={item.name as string}
           type={item.type as string}
-          value={getFieldValue!(item.name as string) as string}
+          value={(getFieldValue!(item.name as string) as string) || ''}
           onChange={changeFieldValue!}
           label={item.label as string}
         />
       );
       break;
     case FormBlueprintItemType.CHECKBOX:
-      initCheckboxValue(item.name as string, item.value as string);
+      const defaultValue: boolean =
+        (item.value as string) === 'yes' ? true : false;
       element = (
         <Checkbox
           name={item.name as string}
           value={getFieldValue!(item.name as string) as boolean}
           onChange={changeFieldValue!}
           label={item.label as string}
+          defaultValue={defaultValue}
         />
       );
       break;

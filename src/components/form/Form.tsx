@@ -21,9 +21,12 @@ const Form: React.FC<IFormProps> = ({config}) => {
     [formData]
   );
 
-  const changeFieldValue = (name: string, value: FormDataFieldValue): void => {
-    setFormData((prevFormData) => ({...prevFormData, [name]: value}));
-  };
+  const changeFieldValue = useCallback(
+    (name: string, value: FormDataFieldValue): void => {
+      setFormData((prevFormData) => ({...prevFormData, [name]: value}));
+    },
+    []
+  );
 
   const {blueprint} = config;
 
