@@ -1,5 +1,5 @@
 import React from 'react';
-import {WithStyleAndClassName} from '../data-structures';
+import {WithStyleAndClassName} from '../../data-structures';
 
 interface IHeadingProps extends WithStyleAndClassName {
   size: number;

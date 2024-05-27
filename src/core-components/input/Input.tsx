@@ -1,5 +1,7 @@
+import clsx from 'clsx';
 import React from 'react';
-import {WithStyleAndClassName} from '../data-structures';
+import {WithStyleAndClassName} from '../../data-structures';
+import './input.css';
 
 interface IInputProps extends WithStyleAndClassName {
   name: string;
@@ -25,7 +27,7 @@ const Input: React.FC<IInputProps> = ({
         value={value}
         placeholder={label}
         style={style}
-        className={className}
+        className={clsx('input__input', className)}
       />
     </>
   );

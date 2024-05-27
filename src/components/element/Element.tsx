@@ -1,10 +1,11 @@
 import React, {ReactElement} from 'react';
-import {Button} from '../../core-components/Button';
-import {Heading} from '../../core-components/Heading';
-import {Input} from '../../core-components/Input';
-import {Paragraph} from '../../core-components/Paragraph';
+import {Button} from '../../core-components/button/Button';
+import {Heading} from '../../core-components/heading/Heading';
+import {Input} from '../../core-components/input/Input';
+import {Paragraph} from '../../core-components/paragraph/Paragraph';
 import {FormBlueprintItemType, IFormBlueprintItem} from '../../data-structures';
 import {Row} from '../row/Row';
+import './element.css';
 
 interface IElementProps {
   item: IFormBlueprintItem;
@@ -19,7 +20,11 @@ const Element: React.FC<IElementProps> = ({item}) => {
 
   switch (item.type) {
     case FormBlueprintItemType.BLOCK:
-      element = <div>{item.elements?.map(renderElement)}</div>;
+      element = (
+        <div className={'element__block'}>
+          {item.elements?.map(renderElement)}
+        </div>
+      );
       break;
     case FormBlueprintItemType.HEADING:
       element = (
@@ -47,7 +52,9 @@ const Element: React.FC<IElementProps> = ({item}) => {
       element = <div></div>;
       break;
     case FormBlueprintItemType.SUBMIT:
-      element = <Button label={item.label as string} />;
+      element = (
+        <Button label={item.label as string} className={'element__button'} />
+      );
       break;
   }
 
