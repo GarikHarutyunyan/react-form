@@ -14,9 +14,10 @@ import {validateFormData} from './util';
 
 interface IFormProps {
   config: IFormConfigDTO;
+  onSubmit: (data: FormData) => void;
 }
 
-const Form: React.FC<IFormProps> = ({config}) => {
+const Form: React.FC<IFormProps> = ({config, onSubmit}) => {
   const {blueprint} = config;
   const validatorsMap = useRef<ValidatorsMap>({});
   const [formData, setFormData] = useState<FormData>({});
@@ -59,8 +60,13 @@ const Form: React.FC<IFormProps> = ({config}) => {
 
     setInvalidMessagesMap(newInvalidMessagesMap);
 
-    if (!Object.keys(newInvalidMessagesMap).length) {
+    const haveMessages: boolean = Object.values(newInvalidMessagesMap).some(
+      (messages) => !!messages.length
+    );
+
+    if (!haveMessages) {
       console.table(formData);
+      onSubmit(formData);
     } else {
       console.table(newInvalidMessagesMap);
     }

@@ -28,7 +28,20 @@ function App() {
     return <>{'There is no predefined configuration for Form!'}</>;
   };
 
-  return config ? <Form config={config} /> : renderPlaceholder();
+  const onSubmit = async (data: {[key: string]: any}) => {
+    try {
+      await axios.post(configApi, data);
+      alert('Data has been saved successfully.');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return config ? (
+    <Form config={config} onSubmit={onSubmit} />
+  ) : (
+    renderPlaceholder()
+  );
 }
 
 export default App;
