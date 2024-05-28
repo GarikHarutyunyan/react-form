@@ -1,0 +1,19 @@
+.placeholder {
+    width: 500px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.placeholder__image {
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+    display: block;
+}
+
+.placeholder__message {
+    font-size: 18px;
+    text-align: center;
+    margin: auto;
+}
