@@ -9,6 +9,7 @@ interface ICheckboxProps extends WithStyleAndClassName {
   onChange: (name: string, value: boolean) => void;
   label: string;
   isRequried?: boolean;
+  invalidMessages?: string[];
 }
 
 const Checkbox: React.FC<ICheckboxProps> = ({
@@ -18,6 +19,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   onChange,
   label,
   isRequried,
+  invalidMessages,
   style,
   className,
 }) => {
@@ -43,6 +45,9 @@ const Checkbox: React.FC<ICheckboxProps> = ({
       {isRequried && (
         <span className={'checkbox__label-required-mark'}>{'*'}</span>
       )}
+      {invalidMessages?.map((message: string) => (
+        <span className={'checkbox__messages'}>{message}</span>
+      ))}
     </div>
   );
 };

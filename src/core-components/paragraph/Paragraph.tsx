@@ -1,5 +1,5 @@
 import React from 'react';
-import {WithStyleAndClassName} from '../data-structures';
+import {WithStyleAndClassName} from '../../data-structures';
 
 interface IParagraphProps extends WithStyleAndClassName {
   value: string;

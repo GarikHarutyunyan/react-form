@@ -9,6 +9,7 @@ interface IInputProps extends WithStyleAndClassName {
   onChange: (name: string, value: string) => void;
   label: string;
   isRequried?: boolean;
+  invalidMessages?: string[];
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<IInputProps> = ({
   onChange,
   label,
   isRequried,
+  invalidMessages,
   style,
   className,
 }) => {
@@ -41,6 +43,9 @@ const Input: React.FC<IInputProps> = ({
         className={'input__input'}
         onChange={handleChange}
       />
+      {invalidMessages?.map((message: string) => (
+        <span className={'input__message'}>{message}</span>
+      ))}
     </div>
   );
 };

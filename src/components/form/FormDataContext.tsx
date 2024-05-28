@@ -1,12 +1,12 @@
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
+import {FormDataFieldValue, Validator} from './types';
 
 const FormDataContext = createContext<{
   getFieldValue?: (name: string) => FormDataFieldValue;
   changeFieldValue?: (name: string, value: FormDataFieldValue) => void;
+  addValidator?: (name: string, validator: Validator) => void;
+  getInvalidMessages?: (name: string) => string[];
 }>({});
-
-import {useContext} from 'react';
-import {FormDataFieldValue} from './Form';
 
 const useFormData = () => {
   const context = useContext(FormDataContext);

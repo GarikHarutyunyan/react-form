@@ -1,11 +1,21 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {Button} from '../../core-components/button/Button';
+import {Checkbox} from '../../core-components/checkbox/Checkbox';
 import {Heading} from '../../core-components/heading/Heading';
 import {Input} from '../../core-components/input/Input';
 import {Paragraph} from '../../core-components/paragraph/Paragraph';
-import {FormBlueprintItemType, IFormBlueprintItem} from '../../data-structures';
-import {Checkbox} from '../checkbox/Checkbox';
+import {
+  FormBlueprintItemType,
+  IFormBlueprintItem,
+  IFormBlueprintItemValidator,
+} from '../../data-structures';
+import {
+  generateValidator,
+  requiredBooleanValidator,
+  requiredStringValidator,
+} from '../../helpers';
 import {useFormData} from '../form/FormDataContext';
+import {Validator} from '../form/types';
 import {Row} from '../row/Row';
 import './element.css';
 
@@ -14,11 +24,36 @@ interface IElementProps {
 }
 
 const Element: React.FC<IElementProps> = ({item}) => {
-  const {changeFieldValue, getFieldValue} = useFormData();
+  const {changeFieldValue, getFieldValue, addValidator, getInvalidMessages} =
+    useFormData();
   let element: ReactElement = <></>;
 
-  const renderElement = (item: IFormBlueprintItem): ReactElement => {
-    return <Element item={item} />;
+  useEffect(() => {
+    if (item.validator) {
+      item.validator.forEach((v: IFormBlueprintItemValidator) => {
+        const newValidator: Validator = generateValidator(v);
+
+        addValidator!(item.name as string, newValidator);
+      });
+    }
+    if (item.required) {
+      if (
+        [FormBlueprintItemType.INPUT, FormBlueprintItemType.PASSWORD].includes(
+          item.type
+        )
+      ) {
+        addValidator!(item.name as string, requiredStringValidator);
+      } else if (item.type === FormBlueprintItemType.CHECKBOX) {
+        addValidator!(item.name as string, requiredBooleanValidator);
+      }
+    }
+  }, []);
+
+  const renderElement = (
+    item: IFormBlueprintItem,
+    index: number
+  ): ReactElement => {
+    return <Element item={item} key={index} />;
   };
 
   switch (item.type) {
@@ -47,6 +82,7 @@ const Element: React.FC<IElementProps> = ({item}) => {
           onChange={changeFieldValue!}
           label={item.label as string}
           isRequried={item.required}
+          invalidMessages={getInvalidMessages!(item.name as string)}
         />
       );
       break;
@@ -56,11 +92,12 @@ const Element: React.FC<IElementProps> = ({item}) => {
       element = (
         <Checkbox
           name={item.name as string}
-          value={getFieldValue!(item.name as string) as boolean}
+          value={!!getFieldValue!(item.name as string)}
           onChange={changeFieldValue!}
           label={item.label as string}
           defaultValue={defaultValue}
           isRequried={item.required}
+          invalidMessages={getInvalidMessages!(item.name as string)}
         />
       );
       break;

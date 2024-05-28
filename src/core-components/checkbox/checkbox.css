@@ -1,0 +1,13 @@
+.checkbox__label-required-mark {
+    margin-left: 2px;
+    color: #d91f1f;
+    font-size: 12px;
+}
+
+.checkbox__messages {
+    display: block;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: #737373;
+    font-size: 12px;
+}

@@ -12,13 +12,16 @@ interface IRowProps extends WithStyleAndClassName {
 }
 
 const Row: React.FC<IRowProps> = ({columns}) => {
-  const renderElement = (item: IFormBlueprintItem) => {
-    return <Element item={item} />;
+  const renderElement = (item: IFormBlueprintItem, index: number) => {
+    return <Element item={item} key={index} />;
   };
 
-  const renderColumn = (column: IFormBlueprintColumn): ReactElement => {
+  const renderColumn = (
+    column: IFormBlueprintColumn,
+    index: number
+  ): ReactElement => {
     return (
-      <div className={'column'} style={{flex: column.size}}>
+      <div className={'column'} style={{flex: column.size}} key={index}>
         {column.elements?.map(renderElement)}
       </div>
     );
