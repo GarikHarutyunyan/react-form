@@ -1,30 +1,45 @@
-# React + TypeScript + Vite
+# React Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React Form project is designed to provide a simple flexible way to create forms based on a predefined configuration. The form can render various blocks, including divs, rows, columns, headings, paragraphs, inputs, checkboxes, and buttons.
 
-Currently, two official plugins are available:
+Check the hosted app on GitHub pages: [Live Demo](https://garikharutyunyan.github.io/react-form/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Or run it locally by following the guidance below.
 
-## Expanding the ESLint configuration
+</br>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+To get started with this project, follow these steps:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Clone this repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/GarikHarutyunyan/react-form.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Navigate to the project directory and install the necessary dependencies using npm or yarn:
+
+```bash
+cd react-form
+npm install
+```
+
+or
+
+```bash
+cd react-form
+yarn install
+```
+
+- Once the dependencies are installed, you can run the project using npm or yarn:
+
+```bash
+npm start
+```
+
+or
+
+```bash
+yarn start
+```
