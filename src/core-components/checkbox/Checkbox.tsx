@@ -45,9 +45,9 @@ const Checkbox: React.FC<ICheckboxProps> = ({
       {isRequried && (
         <span className={'checkbox__label-required-mark'}>{'*'}</span>
       )}
-      {invalidMessages?.map((message: string) => (
-        <span className={'checkbox__messages'}>{message}</span>
-      ))}
+      {invalidMessages?.length ? (
+        <span className={'checkbox__messages'}>{invalidMessages[0]}</span>
+      ) : null}
     </div>
   );
 };

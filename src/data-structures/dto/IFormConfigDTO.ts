@@ -1,15 +1,15 @@
-export interface IFormBlueprintColumn {
+export interface IBlueprintColumn {
   type: 'column';
-  elements: IFormBlueprintItem[];
+  elements: IBlueprintItem[];
   size: number;
 }
 
-export enum FormBlueprintItemValidatorType {
+export enum BlueprintItemValidatorType {
   LENGTH = 'length',
   PATTERN = 'pattern',
 }
 
-export enum FormBlueprintItemValidatorOperator {
+export enum BlueprintItemValidatorOperator {
   LT = 'lt',
   LTE = 'lte',
   GT = 'gt',
@@ -17,26 +17,26 @@ export enum FormBlueprintItemValidatorOperator {
   EQ = 'eq',
 }
 
-export interface IFormBlueprintItemValidator {
-  type: FormBlueprintItemValidatorType;
+export interface IBlueprintItemValidator {
+  type: BlueprintItemValidatorType;
   regexp?: string;
-  operator?: FormBlueprintItemValidatorOperator;
+  operator?: BlueprintItemValidatorOperator;
   value?: number;
 }
 
-export interface IFormBlueprintItem {
-  type: FormBlueprintItemType;
+export interface IBlueprintItem {
+  type: BlueprintItemType;
   name?: string;
   size?: number;
   value?: string;
   label?: string;
   required?: boolean;
-  elements?: IFormBlueprintItem[];
-  columns?: IFormBlueprintColumn[];
-  validator?: IFormBlueprintItemValidator[];
+  elements?: IBlueprintItem[];
+  columns?: IBlueprintColumn[];
+  validator?: IBlueprintItemValidator[];
 }
 
-export enum FormBlueprintItemType {
+export enum BlueprintItemType {
   BLOCK = 'block',
   HEADING = 'heading',
   PARAGRAPH = 'paragraph',
@@ -51,5 +51,5 @@ export enum FormBlueprintItemType {
 export interface IFormConfigDTO {
   version: number;
   name: string;
-  blueprint: IFormBlueprintItem[];
+  blueprint: IBlueprintItem[];
 }

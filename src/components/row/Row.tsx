@@ -1,23 +1,23 @@
 import React, {ReactElement} from 'react';
 import {
-  IFormBlueprintColumn,
-  IFormBlueprintItem,
+  IBlueprintColumn,
+  IBlueprintItem,
   WithStyleAndClassName,
 } from '../../data-structures';
 import {Element} from '../element/Element';
 import './row.css';
 
 interface IRowProps extends WithStyleAndClassName {
-  columns: IFormBlueprintColumn[];
+  columns: IBlueprintColumn[];
 }
 
 const Row: React.FC<IRowProps> = ({columns}) => {
-  const renderElement = (item: IFormBlueprintItem, index: number) => {
+  const renderElement = (item: IBlueprintItem, index: number) => {
     return <Element item={item} key={index} />;
   };
 
   const renderColumn = (
-    column: IFormBlueprintColumn,
+    column: IBlueprintColumn,
     index: number
   ): ReactElement => {
     return (

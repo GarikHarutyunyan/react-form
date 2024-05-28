@@ -1,5 +1,5 @@
 import React, {FormEvent, useCallback, useRef, useState} from 'react';
-import {IFormBlueprintItem, IFormConfigDTO} from '../../data-structures';
+import {IBlueprintItem, IFormConfigDTO} from '../../data-structures';
 import {Element} from '../element/Element';
 import {FormDataContext} from './FormDataContext';
 import './form.css';
@@ -19,8 +19,8 @@ interface IFormProps {
 
 const Form: React.FC<IFormProps> = ({config, onSubmit}) => {
   const {blueprint} = config;
-  const validatorsMap = useRef<ValidatorsMap>({});
   const [formData, setFormData] = useState<FormData>({});
+  const validatorsMap = useRef<ValidatorsMap>({});
   const [invalidMessagesMap, setInvalidMessagesMap] = useState<MessagesMap>({});
 
   const getFieldValue = useCallback(
@@ -47,7 +47,7 @@ const Form: React.FC<IFormProps> = ({config, onSubmit}) => {
     [invalidMessagesMap]
   );
 
-  const renderElement = (item: IFormBlueprintItem, index: number) => (
+  const renderElement = (item: IBlueprintItem, index: number) => (
     <Element item={item} key={index} />
   );
 

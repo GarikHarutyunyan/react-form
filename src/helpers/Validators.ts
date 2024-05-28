@@ -1,8 +1,8 @@
 import {Validator} from '../components/form/types';
 import {
-  FormBlueprintItemValidatorOperator,
-  FormBlueprintItemValidatorType,
-  IFormBlueprintItemValidator,
+  BlueprintItemValidatorOperator,
+  BlueprintItemValidatorType,
+  IBlueprintItemValidator,
 } from '../data-structures';
 import {
   isLengthEqualTo,
@@ -16,50 +16,44 @@ import {
 } from './Validations';
 
 export const generateValidator = (
-  blueprintItemValidator: IFormBlueprintItemValidator
+  itemValidator: IBlueprintItemValidator
 ): Validator => {
   let valdiationFunction;
   let validationMessage;
-  switch (blueprintItemValidator.type) {
-    case FormBlueprintItemValidatorType.LENGTH:
-      switch (blueprintItemValidator.operator) {
-        case FormBlueprintItemValidatorOperator.LT:
-          valdiationFunction = isLengthLessThan(
-            blueprintItemValidator.value as number
-          );
-          validationMessage = `Length must be less than ${blueprintItemValidator.value}`;
+  switch (itemValidator.type) {
+    case BlueprintItemValidatorType.LENGTH:
+      switch (itemValidator.operator) {
+        case BlueprintItemValidatorOperator.LT:
+          valdiationFunction = isLengthLessThan(itemValidator.value as number);
+          validationMessage = `Length must be less than ${itemValidator.value}`;
           break;
-        case FormBlueprintItemValidatorOperator.LTE:
+        case BlueprintItemValidatorOperator.LTE:
           valdiationFunction = isLengthLessThanOrEqualTo(
-            blueprintItemValidator.value as number
+            itemValidator.value as number
           );
-          validationMessage = `Length must be less than or equal to ${blueprintItemValidator.value}`;
+          validationMessage = `Length must be less than or equal to ${itemValidator.value}`;
           break;
-        case FormBlueprintItemValidatorOperator.GT:
+        case BlueprintItemValidatorOperator.GT:
           valdiationFunction = isLengthGreaterThan(
-            blueprintItemValidator.value as number
+            itemValidator.value as number
           );
-          validationMessage = `Length must be greater than ${blueprintItemValidator.value}`;
+          validationMessage = `Length must be greater than ${itemValidator.value}`;
           break;
-        case FormBlueprintItemValidatorOperator.GTE:
+        case BlueprintItemValidatorOperator.GTE:
           valdiationFunction = isLengthGreaterThanOrEqualTo(
-            blueprintItemValidator.value as number
+            itemValidator.value as number
           );
-          validationMessage = `Length must be greater than or equal to ${blueprintItemValidator.value}`;
+          validationMessage = `Length must be greater than or equal to ${itemValidator.value}`;
           break;
-        case FormBlueprintItemValidatorOperator.EQ:
+        case BlueprintItemValidatorOperator.EQ:
         default:
-          valdiationFunction = isLengthEqualTo(
-            blueprintItemValidator.value as number
-          );
-          validationMessage = `Length must be equal to ${blueprintItemValidator.value}`;
+          valdiationFunction = isLengthEqualTo(itemValidator.value as number);
+          validationMessage = `Length must be equal to ${itemValidator.value}`;
           break;
       }
       break;
-    case FormBlueprintItemValidatorType.PATTERN:
-      valdiationFunction = validateRegExp(
-        blueprintItemValidator.regexp as string
-      );
+    case BlueprintItemValidatorType.PATTERN:
+      valdiationFunction = validateRegExp(itemValidator.regexp as string);
       validationMessage =
         'Invalid format. Please check your input and try again.';
       break;

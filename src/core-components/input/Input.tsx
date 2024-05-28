@@ -43,9 +43,9 @@ const Input: React.FC<IInputProps> = ({
         className={'input__input'}
         onChange={handleChange}
       />
-      {invalidMessages?.map((message: string) => (
-        <span className={'input__message'}>{message}</span>
-      ))}
+      {invalidMessages?.length ? (
+        <span className={'input__message'}>{invalidMessages[0]}</span>
+      ) : null}
     </div>
   );
 };
